@@ -1,0 +1,42 @@
+<html>
+    <table border="1">
+        <tr>
+        <th>Name</th>
+        <th>Job Date</th>
+        <th>Starting time</th>
+        <th>Ending Time</th>
+        <th>Holy Day</th>
+        <th>Lunch</th>
+        <th>Work Hour</th>
+        <th>Overtime</th>
+        </tr>
+        <script>
+            var ot=0
+            var wh=0
+        </script>
+        {% for a in work %} 
+            <tr>
+                <td>{{a.name}}</td>
+                <td>{{a.jdate}}</td>
+                <td>{{a.start}}</td>
+                <td>{{a.end}}</td>
+                <td>{{a.holyday}}</td>
+                <td>{{a.lunch}}</td>
+                <td>
+                    {{a.workhour}}
+                </td>
+                <td>   
+                    {{a.overtime}}
+                </td>
+            </tr>
+            <script>
+                ot=ot+parseInt('{{a.overtime}}')
+                wh=wh+parseInt('{{a.workhour}}')
+            </script>
+        {% endfor %}
+    </table>
+    <script>
+        document.write("Total Overtime :"+ot)
+        document.write("<br>Total Work Hour :"+wh)
+    </script>
+</html>
