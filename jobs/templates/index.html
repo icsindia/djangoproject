@@ -1,4 +1,10 @@
 <html>
+    <form action="" method="post">
+        {% csrf_token %}
+       Staring Date : <input type="date" name="s_date">
+       Ending Date : <input type="date" name="e_date">
+       <button>Get</button>
+    </form>
     <table border="1">
         <tr>
         <th>Name</th>
