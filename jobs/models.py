@@ -10,6 +10,7 @@ class Working(models.Model):
     lunch=models.TextField(max_length=3)
     def __str__(self):
         return self.name
+    
     def workhour(self):
         s1 = str(self.start)
         s2 = str(self.end)
@@ -23,8 +24,8 @@ class Working(models.Model):
         if self.lunch=='Yes':
             overall_hours=overall_hours-1
         return overall_hours
-    def overtime(self):
-        overtime=0
+    def __str__(self):
+        self.overtime=0
         s1 = str(self.start)
         s2 = str(self.end)
         start_dt = datetime.strptime(s1, '%H:%M:%S')
@@ -36,13 +37,13 @@ class Working(models.Model):
         overall_hours = days_to_hours + diff_btw_two_times
         if self.lunch=='Yes' and self.holyday=='No' and overall_hours>7:
             overall_hours=overall_hours-1
-            overtime=overall_hours-7
+            self.overtime=overall_hours-7
         if self.lunch=='No' and self.holyday=='Yes':
-            overtime=overall_hours
+            self.overtime=overall_hours
         if self.lunch=='No' and self.holyday=='No':
-            overtime=overall_hours
+            self.overtime=overall_hours
         if self.lunch=='Yes' and self.holyday=='Yes':
             overall_hours=overall_hours-1
-            overtime=overall_hours
-        return overtime
+            self.overtime=overall_hours
+        return str(self.overtime)
     
